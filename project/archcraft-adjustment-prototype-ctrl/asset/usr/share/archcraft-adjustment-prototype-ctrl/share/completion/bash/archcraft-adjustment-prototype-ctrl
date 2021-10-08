@@ -1,0 +1,20 @@
+##
+## ## Arch or Archcraft or Manjaro
+## /usr/local/share/bash-completion/completions/archcraft-adjustment-prototype-ctrl
+## $ sudo install -Dm644 ./archcraft-adjustment-prototype-ctrl /usr/local/share/bash-completion/completions/archcraft-adjustment-prototype-ctrl
+##
+
+_archcraft_adjustment_prototype_ctrl () {
+
+	local cur prev words cword
+	_init_completion || return
+
+	if [ "$cword" = "1" ]; then
+		local action_list=$(DEBUG_ADJUSTMENT_PROTOTYPE_CTRL=false archcraft-adjustment-prototype-ctrl self_actions)
+		COMPREPLY=( $( compgen -W "$action_list" -- "$cur" ) )
+	fi
+
+	return 0
+}
+
+complete -F _archcraft_adjustment_prototype_ctrl archcraft-adjustment-prototype-ctrl
